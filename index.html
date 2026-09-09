@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cowboy's Burger — Aksaray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1C1512;
+    --charcoal-2:#2A1F1A;
+    --leather:#6B4226;
+    --cream:#F4EBDA;
+    --cream-2:#E9DCC0;
+    --rope:#C9962F;
+    --redwood:#8C3423;
+    --olive:#5A6B3A;
+    --line:rgba(244,235,218,0.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Barlow',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.01em;line-height:1.05;}
+  .western{font-family:'Rye',serif;text-transform:none;letter-spacing:0;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+
+  nav{position:sticky;top:0;z-index:60;background:var(--charcoal);border-bottom:3px solid var(--rope);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;}
+  .brand{color:var(--cream);font-family:'Rye',serif;font-size:1.35rem;display:flex;align-items:center;gap:8px;}
+  .brand .dot{color:var(--rope);}
+  .navlinks{display:flex;gap:26px;}
+  .navlinks a{color:var(--cream-2);font-size:0.92rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;transition:color .15s;}
+  .navlinks a:hover{color:var(--rope);}
+  .navcta{background:var(--redwood);color:var(--cream);padding:10px 20px;border-radius:2px;font-weight:700;font-size:0.85rem;text-transform:uppercase;}
+  .navcta:hover{background:#722a1c;}
+
+  .hero{background:radial-gradient(ellipse at 70% 20%,#3a281f 0%,var(--charcoal) 60%);color:var(--cream);padding:80px 0 0;position:relative;overflow:hidden;}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:20px;align-items:center;}
+  .hero-eyebrow{color:var(--rope);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:0.9rem;margin-bottom:16px;}
+  .hero h1{font-family:'Rye',serif;font-size:clamp(2.4rem,5.5vw,4rem);margin-bottom:20px;line-height:1.15;}
+  .hero h1 span{color:var(--rope);}
+  .hero p{color:var(--cream-2);max-width:44ch;font-size:1.05rem;margin-bottom:30px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:14px 26px;font-weight:700;font-size:0.92rem;text-transform:uppercase;letter-spacing:0.03em;border-radius:2px;border:2px solid transparent;transition:transform .12s,background .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--rope);color:var(--charcoal);}
+  .btn-primary:hover{background:#e0ac3f;}
+  .btn-ghost{border-color:var(--cream-2);color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--rope);color:var(--rope);}
+
+  .hero-photo{width:100%;position:relative;}
+  .hero-photo img{
+    width:100%;height:460px;object-fit:cover;display:block;
+    filter:saturate(1.3) contrast(1.18) brightness(1.04) sepia(0.06);
+    -webkit-mask-image:radial-gradient(ellipse 62% 60% at center, black 55%, transparent 100%);
+    mask-image:radial-gradient(ellipse 62% 60% at center, black 55%, transparent 100%);
+  }
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 60% 58% at center, transparent 50%, var(--charcoal) 96%);
+  }
+
+  .hero-strip{background:var(--rope);color:var(--charcoal);margin-top:60px;padding:13px 0;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:700;font-size:0.92rem;letter-spacing:0.05em;overflow:hidden;white-space:nowrap;}
+  .hero-strip .track{display:inline-flex;gap:40px;animation:scroll 24s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.hero-strip .track{animation:none;}}
+
+  .about{padding:90px 0;}
+  .about .wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:center;}
+  .tag{color:var(--redwood);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:0.85rem;margin-bottom:10px;}
+  .about h2{font-size:2.1rem;color:var(--charcoal);margin-bottom:20px;}
+  .about p{color:#4a3a2c;margin-bottom:16px;max-width:54ch;}
+  .about-badge{background:var(--charcoal);color:var(--cream);border-radius:2px;padding:34px;position:relative;}
+  .about-badge::before{content:"";position:absolute;inset:10px;border:1px dashed var(--rope);}
+  .about-badge h3{font-family:'Rye',serif;color:var(--rope);font-size:1.5rem;margin-bottom:14px;text-align:center;}
+  .badge-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .badge-row:last-child{border-bottom:none;}
+  .badge-row b{color:var(--rope);}
+
+  .categories{background:var(--charcoal);color:var(--cream);padding:70px 0;}
+  .cat-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px;margin-bottom:36px;}
+  .cat-head h2{font-size:2rem;}
+  .cat-head .tag{color:var(--rope);}
+  .cat-link{color:var(--rope);font-weight:600;font-size:0.9rem;border-bottom:1px solid var(--rope);}
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .cat-chip{background:var(--charcoal-2);border:1px solid var(--line);border-radius:2px;padding:16px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:0.95rem;text-align:center;transition:border-color .15s,color .15s;}
+  .cat-chip:hover{border-color:var(--rope);color:var(--rope);}
+
+  .menu{padding:90px 0;}
+  .menu-head{margin-bottom:44px;}
+  .menu-head h2{font-size:2.1rem;color:var(--charcoal);}
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .m-card{background:var(--charcoal);color:var(--cream);border-radius:2px;padding:26px;position:relative;border-top:4px solid var(--rope);}
+  .m-card.spicy{border-top-color:var(--redwood);}
+  .m-card.green{border-top-color:var(--olive);}
+  .m-card h3{font-family:'Rye',serif;font-size:1.25rem;color:var(--cream);margin-bottom:14px;text-transform:none;}
+  .m-price-row{display:flex;justify-content:space-between;font-size:0.9rem;padding:7px 0;border-bottom:1px dashed var(--line);color:var(--cream-2);}
+  .m-price-row:last-child{border-bottom:none;}
+  .m-price-row b{color:var(--rope);font-family:'Barlow Condensed',sans-serif;font-size:1rem;}
+
+  .gallery{background:var(--cream-2);padding:90px 0;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:150px 150px;gap:12px;margin-top:40px;}
+  .g-item{border-radius:2px;display:flex;align-items:flex-end;padding:14px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:0.88rem;}
+  .g1{grid-column:1/3;grid-row:1/3;background:linear-gradient(135deg,#8C3423,#5c2116);}
+  .g2{background:linear-gradient(135deg,#C9962F,#916b1c);}
+  .g3{background:linear-gradient(135deg,#5A6B3A,#37401f);}
+  .g4{background:linear-gradient(135deg,#6B4226,#3c2414);}
+  .g5{grid-column:3/5;background:linear-gradient(135deg,#2A1F1A,#140e0b);}
+
+  .visit{padding:90px 0 100px;}
+  .visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .visit h2{font-size:2rem;color:var(--charcoal);margin-bottom:18px;}
+  .visit p{color:#4a3a2c;margin-bottom:22px;max-width:44ch;}
+  .info-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #ddd0b0;}
+  .info-row .ico{color:var(--redwood);font-weight:700;width:22px;}
+  .visit-cta{display:inline-flex;align-items:center;gap:10px;background:var(--redwood);color:var(--cream);padding:16px 26px;border-radius:2px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;margin-top:22px;}
+  .visit-cta:hover{background:#722a1c;}
+  .map-box{background:var(--charcoal);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--cream-2);min-height:320px;border:1px solid var(--line);text-align:center;padding:20px;}
+
+  footer{background:var(--charcoal);color:var(--cream-2);padding:34px 0;text-align:center;font-size:0.85rem;border-top:3px solid var(--rope);}
+  footer span{color:var(--rope);}
+
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-photo img{height:260px;order:-1;}
+    .about .wrap{grid-template-columns:1fr;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .menu-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;}
+    .g1{grid-column:1/3;grid-row:auto;height:180px;}
+    .g5{grid-column:1/3;height:140px;}
+    .visit .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">THE <span class="dot">COWBOY'S</span> BURGER</a>
+    <div class="navlinks">
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#kategoriler">Kategoriler</a>
+      <a href="#menu">Popüler</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#ziyaret">Konum</a>
+    </div>
+    <a href="https://themenu.com.tr/q/thecowboys/" target="_blank" class="navcta">Online Menü</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="hero-eyebrow">Aksaray Merkez · Kafeler Caddesi</div>
+      <h1>Sınırların ötesinde<br><span>burger</span> lezzeti.</h1>
+      <p>The Cowboy's Burger, günlük taze hazırlanan köfteleri ve açık mutfak konseptiyle Aksaray'ın en çok tercih edilen fast-food duraklarından biri.</p>
+      <div class="hero-ctas">
+        <a href="https://themenu.com.tr/q/thecowboys/" target="_blank" class="btn btn-primary">Menüyü İncele</a>
+        <a href="#ziyaret" class="btn btn-ghost">Konuma Git</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://pixabay.com/get/g3b7123b3e9b222b368043ccb85e2f8473a9b62a00b60aee19a0c6b6592673d964f33b78d2401a52cb772c0560a6e0987_1920.jpg" alt="The Cowboy's Burger — sıcak hamburger">
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="track">
+      <span>GÜNLÜK TAZE KÖFTE &nbsp;•&nbsp; AÇIK MUTFAK &nbsp;•&nbsp; HER GÜN 11:00–01:00 &nbsp;•&nbsp; PARK SİTE AVM KARŞISI &nbsp;•&nbsp;</span>
+      <span>GÜNLÜK TAZE KÖFTE &nbsp;•&nbsp; AÇIK MUTFAK &nbsp;•&nbsp; HER GÜN 11:00–01:00 &nbsp;•&nbsp; PARK SİTE AVM KARŞISI &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="hakkimizda">
+  <div class="wrap">
+    <div class="about-badge">
+      <h3>Cowboy's Rozeti</h3>
+      <div class="badge-row"><span>Konsept</span><b>Açık Mutfak</b></div>
+      <div class="badge-row"><span>Köfte</span><b>Günlük Taze</b></div>
+      <div class="badge-row"><span>Çalışma Saatleri</span><b>11:00 – 01:00</b></div>
+      <div class="badge-row"><span>Konum</span><b>Aksaray Merkez</b></div>
+    </div>
+    <div>
+      <div class="tag">Hikayemiz</div>
+      <h2>Açık ateşte, açık mutfakta pişen lezzet.</h2>
+      <p>The Cowboy's Burger, Aksaray Merkez'de Kafeler Caddesi üzerinde, Park Site Alışveriş Merkezi'nin hemen karşısında hizmet veriyor. Köftelerimiz her gün taze hazırlanıyor, açık mutfak konseptiyle her aşama gözünüzün önünde.</p>
+      <p>Burger'in yanı sıra pizza, wrap, makarna, salata ve daha fazlası menümüzde — her gün 11:00'dan gece 01:00'e kadar açığız.</p>
+    </div>
+  </div>
+</section>
+
+<section class="categories" id="kategoriler">
+  <div class="wrap">
+    <div class="cat-head">
+      <div>
+        <div class="tag" style="color:var(--rope);">Ne Yemek İstersiniz?</div>
+        <h2>Menü Kategorileri</h2>
+      </div>
+      <a href="https://themenu.com.tr/q/thecowboys/" target="_blank" class="cat-link">Tam menüyü gör →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-chip">Tek Burger</div>
+      <div class="cat-chip">Burger Menü</div>
+      <div class="cat-chip">Kampanyalılar</div>
+      <div class="cat-chip">Tek Pizza</div>
+      <div class="cat-chip">Pizza Menü</div>
+      <div class="cat-chip">Wrap</div>
+      <div class="cat-chip">Wrap Menü</div>
+      <div class="cat-chip">Makarna</div>
+      <div class="cat-chip">Salatalar</div>
+      <div class="cat-chip">Kızartmalar</div>
+      <div class="cat-chip">Özel Lezzetler</div>
+      <div class="cat-chip">Yan Ürünler</div>
+      <div class="cat-chip">Tatlılar</div>
+      <div class="cat-chip">İçecekler</div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div class="tag">En Çok Tercih Edilenler</div>
+      <h2>Popüler Burgerler</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="m-card">
+        <h3>Hamburger</h3>
+        <div class="m-price-row"><span>100 gr</span><b>395₺</b></div>
+        <div class="m-price-row"><span>140 gr</span><b>415₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>465₺</b></div>
+      </div>
+      <div class="m-card">
+        <h3>Sheriff Burger Menü</h3>
+        <div class="m-price-row"><span>100 gr</span><b>465₺</b></div>
+        <div class="m-price-row"><span>140 gr</span><b>490₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>520₺</b></div>
+      </div>
+      <div class="m-card green">
+        <h3>Mushroom Menü</h3>
+        <div class="m-price-row"><span>100 gr</span><b>490₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>570₺</b></div>
+      </div>
+      <div class="m-card">
+        <h3>Ranch Burger Menü</h3>
+        <div class="m-price-row"><span>100 gr</span><b>490₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>570₺</b></div>
+      </div>
+      <div class="m-card">
+        <h3>Cheese Burger Menü</h3>
+        <div class="m-price-row"><span>100 gr</span><b>495₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>575₺</b></div>
+      </div>
+      <div class="m-card spicy">
+        <h3>Hot Chilli Menü</h3>
+        <div class="m-price-row"><span>100 gr</span><b>490₺</b></div>
+        <div class="m-price-row"><span>200 gr</span><b>570₺</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeri">
+  <div class="wrap">
+    <div class="tag" style="color:var(--redwood);">Galeri</div>
+    <h2 style="font-size:2.1rem;color:var(--charcoal);">Mutfaktan Kareler</h2>
+    <div class="gallery-grid">
+      <div class="g-item g1">Açık Mutfak</div>
+      <div class="g-item g2">Sheriff Burger</div>
+      <div class="g-item g3">Taze Sebzeler</div>
+      <div class="g-item g4">Izgara Köfte</div>
+      <div class="g-item g5">Salon</div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="ziyaret">
+  <div class="wrap">
+    <div>
+      <h2>Bizi Ziyaret Edin</h2>
+      <p>Park Site AVM'nin karşısındayız — açık mutfakta pişen köftelerin kokusunu takip etmeniz yeterli.</p>
+      <div class="info-row"><div class="ico">☎</div><div>(0382) 502 22 22</div></div>
+      <div class="info-row"><div class="ico">⌂</div><div>Kafeler Caddesi, Park Site AVM Karşısı, Aksaray Merkez</div></div>
+      <div class="info-row"><div class="ico">⏱</div><div>Her gün 11:00 – 01:00</div></div>
+      <a href="tel:03825022222" class="visit-cta">Hemen Ara: (0382) 502 22 22</a>
+      <a href="https://themenu.com.tr/q/thecowboys/" target="_blank" class="visit-cta" style="background:var(--charcoal);margin-left:10px;">Online Menü →</a>
+    </div>
+    <div class="map-box">Harita alanı<br>(gerçek sitede Google Maps embed gelecek)</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 The Cowboy's Burger — <span>bu bir örnek/portföy sitesidir</span>
+  </div>
+</footer>
+
+
+</body>
+</html>
